@@ -7,8 +7,8 @@ function loadConfigFile(string $filename,string $moduleName){
     return getModuleName($moduleName).'config'.DS().$filename.'php';
 }
 function loadRoute(string $filename,string $moduleName){
-   // return __DIR__.DS().'..'.DS().'routes'.DS().'admin'.DS().$filename.'php';
-    return getModuleName($moduleName).'routes'.DS().'admin'.DS().$filename.'php';
+//    return __DIR__.DS().'..'.DS().'routes'.DS().'admin'.DS().$filename.'.php';
+    return getModuleName($moduleName).'routes'.DS().'admin'.DS().$filename.'.php';
 }
 
 function loadViews(string $moduleName){
