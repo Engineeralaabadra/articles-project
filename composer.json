@@ -32,6 +32,10 @@
                 "database/seeders",
                 "app/modules/articles/database/seeders",
                 "database/factories"
+            ],
+            "files": [
+                "app/helpers/route.php",
+                "app/helpers/path.php"
             ]
         
     },
