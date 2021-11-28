@@ -36,3 +36,5 @@ class ArticleServiceProvider extends ServiceProvider
        $this->loadTranslationsFrom(__DIR__.$ds.'..'.$ds.'resources'.$ds.'lang',$moduleName);
     }
 }
+
+
