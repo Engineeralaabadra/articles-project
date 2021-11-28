@@ -1,0 +1,1 @@
+@lang('articles::index.index')
