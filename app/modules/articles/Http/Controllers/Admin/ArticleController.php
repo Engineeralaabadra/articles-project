@@ -12,7 +12,8 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(RequestsArticle $request){
+    public function index(){
+        // public function index(RequestsArticle $request){
         //    return 222;
         // return view('articles::admin.index');
         $articles=ModelsArticle::get();
