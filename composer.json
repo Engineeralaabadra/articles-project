@@ -26,7 +26,14 @@
             "Articles\\":"app/modules/articles",  
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+
+            "classmap": [
+                "database/seeders",
+                "app/modules/articles/database/seeders",
+                "database/factories"
+            ]
+        
     },
     "autoload-dev": {
         "psr-4": {
