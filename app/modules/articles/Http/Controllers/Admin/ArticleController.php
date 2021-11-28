@@ -5,6 +5,7 @@ use App\Http\Requests\Article;
 
 class ArticleController extends Controller{
     public function index(){
-       return 222;
+        return view('articles::admin.index');
+        //    return 222;
     }
 }
