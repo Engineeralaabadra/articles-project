@@ -1,9 +1,15 @@
 <?php
 use Illuminate\Support\Facades\Route;
- Route::prefix('api/admin/articles')->group(function(){
-    Route::get('/index',function(){
-        return 88;
-    });
-    // Route::get('/index',"Articles\Http\Controllers\Admin\ArticleController@index");
+ //Route::prefix('api/admin/articles')->group(function(){
+Route::prefix('api')->group(function(){
+    // Route::get('/index',function(){
+    //     return 88;
+    // });
+    Route::namespace('Articles\Http\Controllers')->group(function(){
+        Route::prefix(config('articles.prefix.admin',config('module.prefix.admin')).'/'.config('articles.module-name'))->namespace('Admin')->group(function(){
+            Route::get('index','ArticleController@index');
+        });
+});
+// Route::get('/index',"Articles\Http\Controllers\Admin\ArticleController@index");
  });
- 
+//});
