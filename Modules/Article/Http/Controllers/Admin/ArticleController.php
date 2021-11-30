@@ -68,8 +68,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
+        $article=ModelsArticle::findOrFail($id);
         try{
-            $article=ModelsArticle::findOrFail($id);
             return \response()->json([
                 'status'=>200,
                 'data'=>$article
@@ -91,8 +91,8 @@ class ArticleController extends Controller
      */
     public function update(RequestsArticle $request, $id)
     {
+        $article=ModelsArticle::findOrFail($id);
         try{
-            $article=ModelsArticle::findOrFail($id);
             $article->update(['title'=>$request->title,'body'=>$request->body]);
             return \response()->json([
                 'status'=>200,
@@ -115,8 +115,8 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
+        $article=ModelsArticle::findOrFail($id);
         try{
-            $article=ModelsArticle::findOrFail($id);
             $article->delete($article);
             return \response()->json([
                 'status'=>200,
