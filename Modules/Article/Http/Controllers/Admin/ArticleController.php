@@ -16,25 +16,26 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        // public function index(RequestsArticle $request){
-        //    return 222;
-        // return view('articles::admin.index');
-        $articles=ModelsArticle::get();
-        return \response()->json([
-            'status'=>200,
-            'data'=>$articles
-        ]);
+        try{
+            $articles=ModelsArticle::get();
+            if(!empty($articles)){
+            return \response()->json([
+                'status'=>200,
+                'data'=>$articles
+            ]);
+        }else{
+            return response()->json([
+                'status'=>404,
+                'message'=>'there is no data'
+            ]);
+        }
+        }catch(\Exception $ex){
+            return response()->json([
+                'status'=>500,
+                'message'=>'There is something wrong, please try again'
+            ]);  
+        }
     }
-
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function create()
-    // {
-    //     //
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -44,12 +45,19 @@ class ArticleController extends Controller
      */
     public function store(RequestsArticle $request)
     {
-        $article=new ModelsArticle();
-        $article->insert(['title'=>$request->title,'body'=>$request->body]);
-        return \response()->json([
-            'status'=>200,
-            'message'=>'created successfully'
-        ]);
+        try{
+            $article=new ModelsArticle();
+            $article->insert(['title'=>$request->title,'body'=>$request->body]);
+            return \response()->json([
+                'status'=>200,
+                'message'=>'created successfully'
+            ]);
+        }catch(\Exception $ex){
+            return response()->json([
+                'status'=>500,
+                'message'=>'There is something wrong, please try again'
+            ]);  
+        }
     }
 
     /**
@@ -60,23 +68,19 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $article=ModelsArticle::findOrFail($id);
-        return \response()->json([
-            'status'=>200,
-            'data'=>$article
-        ]);
+        try{
+            $article=ModelsArticle::findOrFail($id);
+            return \response()->json([
+                'status'=>200,
+                'data'=>$article
+            ]);
+        }catch(\Exception $ex){
+            return response()->json([
+                'status'=>500,
+                'message'=>'There is something wrong, please try again'
+            ]);  
+        }
     }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit($id)
-    // {
-    //     //
-    // }
 
     /**
      * Update the specified resource in storage.
@@ -87,12 +91,19 @@ class ArticleController extends Controller
      */
     public function update(RequestsArticle $request, $id)
     {
-        $article=ModelsArticle::findOrFail($id);
-        $article->update(['title'=>$request->title,'body'=>$request->body]);
-        return \response()->json([
-            'status'=>200,
-            'message'=>'updated successfully'
-        ]);
+        try{
+            $article=ModelsArticle::findOrFail($id);
+            $article->update(['title'=>$request->title,'body'=>$request->body]);
+            return \response()->json([
+                'status'=>200,
+                'message'=>'updated successfully'
+            ]);
+        }catch(\Exception $ex){
+            return response()->json([
+                'status'=>500,
+                'message'=>'There is something wrong, please try again'
+            ]);  
+        }
 
     }
 
@@ -104,12 +115,19 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        $article=ModelsArticle::findOrFail($id);
-        $article->delete($article);
-        return \response()->json([
-            'status'=>200,
-            'message'=>'deleted successfully'
-        ]);
+        try{
+            $article=ModelsArticle::findOrFail($id);
+            $article->delete($article);
+            return \response()->json([
+                'status'=>200,
+                'message'=>'deleted successfully'
+            ]);
+        }catch(\Exception $ex){
+            return response()->json([
+                'status'=>500,
+                'message'=>'There is something wrong, please try again'
+            ]);  
+        }
     }
 
 }

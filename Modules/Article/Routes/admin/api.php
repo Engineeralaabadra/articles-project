@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
-/** routes admin for articles */
+/** routes api admin for articles */
 Route::prefix('admin/articles')->namespace('Admin')->group(function(){
     Route::get('index','ArticleController@index');
     Route::get('show/{id}','ArticleController@show');
