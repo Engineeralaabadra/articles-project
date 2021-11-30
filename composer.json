@@ -25,19 +25,13 @@
         "psr-4": {
             "App\\": "app/",
             "Modules\\": "Modules/",
-            "Articles\\":"app/modules/articles",  
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         },
 
             "classmap": [
                 "database/seeders",
-                "app/modules/articles/database/seeders",
                 "database/factories"
-            ],
-            "files": [
-                "app/helpers/route.php",
-                "app/helpers/path.php"
             ]
         
     },
