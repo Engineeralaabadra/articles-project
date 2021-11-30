@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/article', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/article', function (Request $request) {
+//     return $request->user();
+// });
+// Route::prefix('admin/articles')->group(function(){
+    // Route::get('index',ArticleController::class,'index');
+   Route::get('show/{id}','ArticleController@show');
+   Route::post('update/{id}','ArticleController@update');
+   Route::get('destroy/{id}','ArticleController@destroy');
+// });

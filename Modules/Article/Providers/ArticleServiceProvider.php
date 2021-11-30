@@ -24,6 +24,7 @@ class ArticleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $ds=DIRECTORY_SEPARATOR;
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
@@ -53,6 +54,7 @@ class ArticleServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             module_path($this->moduleName, 'Config/config.php'), $this->moduleNameLower
         );
+        
     }
 
     /**
