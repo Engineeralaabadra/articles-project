@@ -5,13 +5,9 @@ import ManageArticles from "../views/dashboard/articles/ManageArticles";
 
 Vue.use(VueRouter);
 
-const routes = [{
-        path: "/",
-        name: "Home",
-        component: Home,
-    },
+const routes = [
      {
-        path: "/manage-articles",
+        path: "/",
         name: "manage-articles",
         component: ManageArticles,
     }

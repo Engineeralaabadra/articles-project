@@ -73,6 +73,7 @@
                           label="عنوان المقال"
                           v-model="editedItem.title"
                         ></v-text-field>
+
                         <v-text-field
                           class="col-sm-5 mr-auto"
                           outlined
@@ -158,6 +159,9 @@ export default {
   },
   data() {
     return {
+      color:null,
+      snackbar:null,
+      text:null,
       ErrorBool: false,
       SuccessBool: false,
       Errors: [],
@@ -178,7 +182,7 @@ export default {
         "No Data Events": "There is No Event For This User to  Show it",
         Else: "Occured Somthing Error  to show Result Data ! Try again",
       },
-      status: ["متوفر", "غير متوفر"],
+      status: ["Active", "Not Active"],
       search: "",
       dialog: false,
       headers: [
@@ -188,7 +192,7 @@ export default {
           sortable: true,
           value: "title",
         },
-        { text: "موضوع المقال", value: "subject" },
+        { text: "موضوع المقال", value: "body" },
         { text: "الحالة", value: "status" },
         { text: "تعديل وحذف", value: "actions", sortable: false },
       ],
@@ -272,12 +276,12 @@ export default {
     },
     initialize() {
       axios
-        .get("http://127.0.0.1:8080/api/admin/articles/index")
+        .get("http://127.0.0.1:8000/api/admin/articles/index")
         .then((res) => {
           console.log("yyyy", res);
 
           if (res.data.length != 0) {
-            res.data.forEach((item) => {
+            res.data.data.forEach((item) => {
               this.articles.push(item);
             });
           } else {
@@ -286,10 +290,10 @@ export default {
         })
         .catch((err) => {
           console.log("uuuu", err.response.data.status);
-          if (err.response.data.status == 400) {
+          if (err.response.message.status == 400) {
             this.noDataInSomethingResult();
-          } else if (err.response.data.status == 401) {
-            this.callErrorMessage(res.data.status);
+          } else if (err.response.message.status == 401) {
+            this.callErrorMessage(res.message.status);
           } else {
             this.callErrorMessage("Else");
           }
@@ -304,12 +308,13 @@ export default {
 
     deleteItem(item) {
       const index = this.articles.indexOf(item);
+      console.log('bbb', this.$dialog)
       this.$dialog
         .confirm("هل أنت متأكدأنك تريح مسح هذا العنصر!")
         .then((dialog) => {
           axios
             .get(
-              `http://127.0.0.1:8080/api/admin/articles/destroy/${this.editedItem.id}`
+              `http://127.0.0.1:8000/api/admin/articles/destroy/${this.editedItem.id}`
             )
             .then((res) => {
               if (res.data.status == 404) {
@@ -351,7 +356,7 @@ export default {
         Object.assign(this.articles[this.editedIndex], this.editedItem);
         axios
           .post(
-            `http://127.0.0.1:8080/api/admin/articles/update/${this.editedItem.id}`,
+            `http://127.0.0.1:8000/api/admin/articles/update/${this.editedItem.id}`,
             {
               title: this.editedItem.title,
               body: this.editedItem.body,
@@ -386,7 +391,7 @@ export default {
       } else {
         this.articles.push(this.editedItem);
         axios
-          .post("http://127.0.0.1:8080/api/admin/articles/store", {
+          .post("http://127.0.0.1:8000/api/admin/articles/store", {
             title: this.editedItem.title,
             body: this.editedItem.body,
             status: this.editedItem.status,

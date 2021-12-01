@@ -18,8 +18,5 @@ new Vue({
     router,
     store,
     vuetify,
-    created() {
-        this.$router.push("/");
-    },
     render: (h) => h(App),
 }).$mount("#app");

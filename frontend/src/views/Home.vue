@@ -1,13 +1,5 @@
 <template>
   <div class="container-fluid">
-      <v-snackbar v-model="snackbar" :color="color">
-      {{ text }}
-      <template v-slot:action="{ attrs }">
-        <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
     <v-row>
       <v-overlay :value="overlay">
         <v-progress-circular indeterminate size="64"></v-progress-circular>

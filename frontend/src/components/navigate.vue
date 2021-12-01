@@ -3,7 +3,7 @@
     <v-app-bar color="deep-purple accent-4" dense dark>
       <v-app-bar-nav-icon @click="mini = !mini"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>مطعمك</v-toolbar-title>
+      <v-toolbar-title>مقالات</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -47,159 +47,16 @@ export default {
       mini: true,
       menu: [
         {
-          title: "المستخدمين",
+          title: "المقالات",
           icon: "fa fa-address-card font-2 white--text",
           child: [
             {
-              href: "/manage-users",
-              title: "إدارة المستخدمين",
-              class: "white--text col-sm-12 p-0",
-            },
-            {
-              href: "/manage-roles",
-              title: "ادارة الادوار",
-              class: "white--text col-sm-12 p-0",
-            },
-            {
-              href: "/manage-employees",
-              title: "إدارة الموظفين",
-              class: "white--text col-sm-12 p-0",
-            },
-            
-          ],
-        },
-
-        {
-          title: "المشتريات",
-          icon: "fa fa-hand-holding-usd font-2 white--text",
-          child: [
-            {
-              href: "/manage-purchases",
-              title: "إدارة المشتريات",
-              class: "white--text col-sm-12 p-0",
-            },            {
-              href: "/manage-units-purchases",
-              title: "إدارة وحدات المشتريات",
-              class: "white--text col-sm-12 p-0",
-            },
-            {
-              href: "/manage-purchases-invoices",
-              title: "ادارة فواتير المشتريات",
-              class: "white--text col-sm-12 p-0",
-            },
-
-            {
-              href: "/manage-suppliers",
-              title: "ادارة الموردين",
-              class: "white--text col-sm-12 p-0",
-            },
-          ],
-        },
-        {
-          title: "المخازن",
-          icon: "fa fa-coins font-2 white--text",
-          child: [
-            {
-              title: "ادارة المخزن",
-              href: "/manage-stores",
-            },            {
-              title: "ادارة منتجات مخزن معين",
-              href: "/manage-items-store",
-            },
-            {
-              title: "ادارة المطبخ",
-              href: "/manage-items-in-kitchen",
-            },
-          ],
-        },
-        {
-          title: "الاصناف",
-          icon: "fa fa-list font-2 white--text",
-          href: "/manage-categories",
-        },
-
-        {
-          title: "المبيعات",
-          icon: "fa fa-donate font-2 white--text",
-          child: [
-                        {
-              href: "/manage-meals",
-              title: "ادارة الوجبات",
-              class: "white--text col-sm-12 p-0",
-            },
-            {
-              href: "/manage-orders",
-              title: "ادارة الطلبات",
-              class: "white--text col-sm-12 p-0",
-            },
-
-            {
-              href: "/manage-clients",
-              title: "ادارة العملاء",
-              class: "white--text col-sm-12 p-0",
-            },
-                        {
-              href: "/manage-pos",
-              title: "manage-pos",
+              href: "/",
+              title: "إدارة المقالات",
               class: "white--text col-sm-12 p-0",
             }
           ],
-        },
-        {
-          title: " التكاليف المباشرة",
-          icon: "fa fa-building font-2 white--text",
-          child: [
-            {
-              href: "/manage-direct-costs",
-              title: "إدارة التكاليف المباشرة",
-              class: "white--text col-sm-12 p-0",
-            },
-          ],
-        },
-        {
-          title: " التكاليف الغير مباشرة",
-          icon: "fa fa-building font-2 white--text",
-          child: [
-            {
-              href: "/manage-in-direct-costs",
-              title: "إدارة التكاليف الغير مباشرة",
-              class: "white--text col-sm-12 p-0",
-            },
-          ],
-        },
-
-        {
-          title: "الإعدادت",
-          icon: "fa fa-cogs font-2 white--text",
-          child: [
-            {
-              title: "الملف الشخصي",
-              href: "/profile",
-            },
-            {
-              title: "الماليات",
-              href: "/finances",
-            },
-            {
-              title: "الضرائب والخدمات",
-              href: "/taxes",
-            },
-            {
-              title: "الخصومات",
-              href: "/discounts",
-            }
-          ],
-        },
-        {
-          title: "التقارير",
-          icon: "fa fa-chart-bar font-2 white--text",
-          href: "/manage-reports",
-        },
-
-        {
-          title: "تسجيل خروج",
-          icon: "fa fa-sign-out-alt font-2 white--text",
-        },
+        }
       ],
     };
   },
