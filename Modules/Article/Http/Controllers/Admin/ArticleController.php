@@ -47,7 +47,7 @@ class ArticleController extends Controller
     {
         try{
             $article=new ModelsArticle();
-            $article->insert(['title'=>$request->title,'body'=>$request->body]);
+            $article->insert(['title'=>$request->title,'body'=>$request->body,'status'=>$request->status]);
             return \response()->json([
                 'status'=>200,
                 'message'=>'created successfully'
