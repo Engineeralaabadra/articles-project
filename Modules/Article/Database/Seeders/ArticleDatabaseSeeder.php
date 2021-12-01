@@ -20,7 +20,8 @@ class ArticleDatabaseSeeder extends Seeder
         // $this->call("OthersTableSeeder");
         Article::create([
             'title'=>'article1',
-            'body'=>'body article1'
+            'body'=>'body article1',
+            'status'=>'Active'
         ]);
     }
 }
