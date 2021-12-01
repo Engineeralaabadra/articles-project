@@ -159,9 +159,9 @@ export default {
   },
   data() {
     return {
-      color:null,
-      snackbar:null,
-      text:null,
+      color: null,
+      snackbar: false,
+      text: null,
       ErrorBool: false,
       SuccessBool: false,
       Errors: [],
@@ -232,9 +232,12 @@ export default {
       if (this.ErrorMessage.hasOwnProperty(id)) return this.ErrorMessage[id];
     },
     callSuccessMessage(msg) {
+      this.text = msg;
+
       this.Success = [];
       return this.Success.push(msg);
     },
+
     noDataInYourEntering() {
       this.Errors = [];
       (this.ErrorBool = true),
@@ -278,8 +281,6 @@ export default {
       axios
         .get("http://127.0.0.1:8000/api/admin/articles/index")
         .then((res) => {
-          console.log("yyyy", res);
-
           if (res.data.length != 0) {
             res.data.data.forEach((item) => {
               this.articles.push(item);
@@ -289,7 +290,6 @@ export default {
           }
         })
         .catch((err) => {
-          console.log("uuuu", err.response.data.status);
           if (err.response.message.status == 400) {
             this.noDataInSomethingResult();
           } else if (err.response.message.status == 401) {
@@ -308,14 +308,11 @@ export default {
 
     deleteItem(item) {
       const index = this.articles.indexOf(item);
-      console.log('bbb', this.$dialog)
       this.$dialog
         .confirm("هل أنت متأكدأنك تريح مسح هذا العنصر!")
         .then((dialog) => {
           axios
-            .get(
-              `http://127.0.0.1:8000/api/admin/articles/destroy/${this.editedItem.id}`
-            )
+            .get(`http://127.0.0.1:8000/api/admin/articles/destroy/${item.id}`)
             .then((res) => {
               if (res.data.status == 404) {
                 this.noDataInSomethingResult();
@@ -326,6 +323,8 @@ export default {
               } else {
                 if (res.data.message != null) {
                   this.callSuccessMessage(res.data.message);
+                  this.articles.splice(index, 1);
+                  this.snackbar = true;
                 } else {
                   this.noDataInYourEntering();
                 }
@@ -364,7 +363,6 @@ export default {
             }
           )
           .then((res) => {
-            console.log("fff", res);
             if (res.data.status == 404) {
               this.noDataInSomethingResult();
             } else if (res.data.status == 401) {
@@ -374,6 +372,7 @@ export default {
             } else {
               if (res.data.message != null) {
                 this.callSuccessMessage(res.data.message);
+                this.snackbar = true;
               } else {
                 this.noDataInYourEntering();
               }
@@ -397,7 +396,6 @@ export default {
             status: this.editedItem.status,
           })
           .then((res) => {
-            console.log("fff", res);
             if (res.data.status == 404) {
               this.noDataInSomethingResult();
             } else if (res.data.status == 401) {
@@ -407,6 +405,7 @@ export default {
             } else {
               if (res.data.message != null) {
                 this.callSuccessMessage(res.data.message);
+                this.snackbar = true;
               } else {
                 this.noDataInYourEntering();
               }
